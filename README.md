@@ -47,5 +47,21 @@ Once we have this the program will then assign a P/T characters on a random node
 
 # Information about Sever Class
 
+(Key Variables and Definitions)
+1. originalGraph: Option[NetGraph] load the .ngs
+2. perturbedGraph: Option[NetGraph] load the .ngs.perturbed
+3. gameActor: ActorRef - Actor responsible for handling game logic.
+4. route: Route - Akka HTTP route defining the REST API for the PolicemanThiefGameServer.
+5. og: NetGraph - For original graph
+6. pg: NetGraph - For perturbed graph
+
+(Classes)
+1. RestartGame - Message request to restart the game.
+2. MoveRequest(playerName: String, nodeId: Int) - Request to move the player to a specified node.
+3. QueryRequest(playerName: String, node: Node) - Request for information about a node in the perturbed graph.
+4. Node(id: Int, valuableData: Boolean) - Represents a node in the game graph with an ID and valuable data indicator.
+5. Edge(from: Node, to: Node) - Represents an edge between two nodes in the game graph.
+6. GameGraph(nodes: Set[Node], edges: Set[Edge]) - Represents the game graph with nodes and edges.
+7. Player(name: String, role: String, position: Node) - Represents a player in the game with a name, role, and position.
 
 # Information about gamePoliceThief Class
