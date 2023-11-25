@@ -28,6 +28,18 @@ Background on what the game actually is about:
 The Policeman/Thief graph game where playersm acting as policemen or thieves can go around and navigate through a graph of nodes and edges. Thieves aim to collect valuable data in specific nodes, while policemen attempt to catch the thieves by moving around the graph.
 
 TO start playing run the `server.class` this should then invoke the `gamePoliceThief.class`
+Once we have this the program will then assign a P/T characters on a random node on the graph where there next you can start playing and moving by doing a series a command
+
+(This restarts the game)
+- curl -X POST http://localhost:8080/restart
+(This starts the game)
+- curl -X POST http://localhost:8080/startGame
+(This moves the Police)
+- curl -X POST http://localhost:8080/move/P/2
+(This moves the Thief)
+- curl -X POST http://localhost:8080/move/T/2
+(This here can get info about the player. P or T)
+- curl -X POST http://localhost:8080/getInfo/P/2
 
 # Information about Sever Class
 
