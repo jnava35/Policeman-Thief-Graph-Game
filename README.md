@@ -65,3 +65,33 @@ Once we have this the program will then assign a P/T characters on a random node
 7. Player(name: String, role: String, position: Node) - Represents a player in the game with a name, role, and position.
 
 # Information about gamePoliceThief Class
+
+(Key Variables and Definitions)
+1. originalGraph: Option[NetGraph] load the .ngs
+2. perturbedGraph: Option[NetGraph] load the .ngs.perturbed
+3. players: Map[String, Player] - Map storing player information with player name as the key and player object as the value.
+5. confidenceScore: Double - Confidence score associated with a node in the perturbed graph for player to make descision.
+
+(Case classes)
+1. Node(id: Int, valuableData: Boolean, confidenceScore: Double) - Represents a node in the game graph with an ID, valuable data indicator, and confidence score.
+2. Edge(from: Node, to: Node) - Represents an edge between two nodes in the game graph.
+3. GameGraph(nodes: Set[Node], edges: Set[Edge]) - Represents the game graph with nodes and edges.
+4. Player(name: String, role: String, position: Node) - Represents a player in the game with a name, role, and position.
+
+(Methods and Functions)
+1. getRandomNode(graph: GameGraph): Node - Returns a random node from the graph.
+2. registerPlayer(name: String, role: String): Unit - Registers a player with a random starting position.
+3. getRandomConnectedNode(from: Node): Option[(Node, Edge)] - Returns a random connected node and the connecting edge for player movement.
+4. isValidMove(from: Node, to: Node, graph: GameGraph): Boolean - Checks if a move from one node to another is valid.
+5. movePlayer(playerName: String, nodeId: Int): Unit - Moves a player to a specified node if the move is valid.
+6. listNeighborNodes(playerName: String): Unit - Lists neighbor nodes for a player.
+7. getInfoNode(playerName: String, node: Node): Unit - Retrieves information about a specific node in the perturbed graph.
+8. getPlayerInfo(playerName: String): Option[Player] - Retrieves information about a specific player.
+9. printWinLossStatus(playerName: String): Unit - Prints win/loss status for a player based on their current position and conditions.
+
+(Main Object: gamePoliceThief)
+- Main entry point for the PolicemanThiefGame application.
+- Loads original and perturbed graphs from NetGraph files.
+- Initializes and sets up the PolicemanThiefGame with the loaded graphs.
+- Registers a policeman and a thief player.
+
