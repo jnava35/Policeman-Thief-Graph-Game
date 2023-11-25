@@ -15,6 +15,12 @@ NetID: jnava35@uic.edu | UIN: 660115946 | Repo for HW3 CS 441
 1. Confirm the steps from setting up project is completed
 2. Run the `Main.scala` by clicking the green arrow next to `def main`
 3. Once ran the code will produce files we will need to run our program
-4. Locate where the files are produced
+4. Locate where the files are produced and stored
 5. We need a `NetGraph_21-11-23-23-05-10.ngs` and a `NetGraph_21-11-23-23-05-10.ngs.perturbed`
-6. 
+6. Once we have obtained the files we need to add them to our classes and change the directory output
+7. 
+
+# Information about Sever Class
+
+
+# Information about gamePoliceThief Class
