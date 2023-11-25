@@ -12,7 +12,7 @@ import scala.util.{Failure, Success, Try}
 
 import scala.io.StdIn
 
-// Define case classes for HTTP requests below are the classes.
+// Classes for HTTP requests below are the classes.
 
 // This is a message request so we can restarts thhe game
 case class RestartGame()
@@ -49,13 +49,17 @@ class PolicemanThiefGameActor(originalGraph: GameGraph, perturbedGraph: GameGrap
     case RestartGame =>
       game = new PolicemanThiefGame(originalGraph, perturbedGraph)
       sender() ! "Game restarted."
+    // Start the game when receiving the StartGame message
+    case StartGame =>
+      game = new PolicemanThiefGame(originalGraph, perturbedGraph)
+      sender() ! "Game started."
     // Here we are getting the request for the user to make a move
     case moveRequest: MoveRequest =>
-      val response = game.movePlayer(movePlayer.playerName, Node(movePlayer.nodeId, valuableData = false))
+      val response = game.movePlayer(moveRequest.playerName, Node(moveRequest.nodeId, valuableData = false))
       sender() ! response
     // Here we can get
     case getInfo: QueryRequest =>
-      val response = game.getInfoNode(getInfoNode.playerName, getInfoNode.node)
+      val response = game.getInfoNode(getInfo.nodeId, getInfo.node)
       sender() ! response
   }
 }
@@ -78,8 +82,7 @@ object PolicemanThiefGameServer extends App {
 
       val route = {
         // curl -X POST http://localhost:8080/restart
-
-          path("restart") {
+        path("restart") {
           post {
             completeWithStatus((gameActor ? RestartGame).mapTo[String])
           }
@@ -87,35 +90,35 @@ object PolicemanThiefGameServer extends App {
           // curl -X POST http://localhost:8080/startGame
           path("startGame") {
             post {
+              // Invoke the method from the game class directly
+              gameActor ! StartGame
               complete("Game started.")
             }
           } ~
-      }
-      // Example:
-      // curl -X POST http://localhost:8080/move/P/2
-      // where P is police and 2 is node
-
-      // curl -X POST http://localhost:8080/move/T/2
-      // where T is thief and 2 is node
-
-      path("move" / Segment / IntNumber) { (playerName, nodeId) =>
-        post {
-          val movePlayer = movePlayer(playerName, nodeId)
-          completeWithStatus((gameActor ? moveRequest).mapTo[String])
-        }
-      } ~
-        // curl -X POST http://localhost:8080/getInfo/P/2
-        path("getInfo") {
-          post {
-            entity(as[QueryRequest]) { queryRequest =>
-              val playerName = getInfoNode.playerName
-              val node = getInfoNode.node
-              // Call the getInfoNode method here
-              game.getInfoNode(playerName, node)
-              complete("getting info.")
+          // Example:
+          // curl -X POST http://localhost:8080/move/P/2
+          // where P is police and 2 is node
+          // curl -X POST http://localhost:8080/move/T/2
+          // where T is thief and 2 is node
+          path("move" / Segment / IntNumber) { (playerName, nodeId) =>
+            post {
+              val moveRequest = MoveRequest(playerName, nodeId)
+              completeWithStatus((gameActor ? moveRequest).mapTo[String])
+            }
+          } ~
+          // curl -X POST http://localhost:8080/getInfo/P/2
+          path("getInfo") {
+            post {
+              entity(as[QueryRequest]) { queryRequest =>
+                val playerName = queryRequest.playerName
+                val node = queryRequest.node
+                // Call the getInfoNode method here
+                gameActor ! QueryRequest(playerName, node)
+                complete("getting info.")
+              }
             }
           }
-        }
+      }
 
       // Start the HTTP server
       Http().newServerAt("localhost", 8080).bind(route)
