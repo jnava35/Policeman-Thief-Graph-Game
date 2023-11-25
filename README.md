@@ -31,15 +31,15 @@ TO start playing run the `server.class` this should then invoke the `gamePoliceT
 Once we have this the program will then assign a P/T characters on a random node on the graph where there next you can start playing and moving by doing a series a command
 
 (This restarts the game)
-- curl -X POST http://localhost:8080/restart
+- `curl -X POST http://localhost:8080/restart`
 (This starts the game)
-- curl -X POST http://localhost:8080/startGame
-(This moves the Police)
-- curl -X POST http://localhost:8080/move/P/2
-(This moves the Thief)
-- curl -X POST http://localhost:8080/move/T/2
-(This here can get info about the player. P or T)
-- curl -X POST http://localhost:8080/getInfo/P/2
+- `curl -X POST http://localhost:8080/startGame`
+(This moves the Police, (2 is a place holder))
+- `curl -X POST http://localhost:8080/move/P/2`
+(This moves the Thief, (2 is a place holder))
+- `curl -X POST http://localhost:8080/move/T/2`
+(This here can get info about the player. P or T (2 is a place holder))
+- `curl -X POST http://localhost:8080/getInfo/P/2`
 
 # Information about Sever Class
 
