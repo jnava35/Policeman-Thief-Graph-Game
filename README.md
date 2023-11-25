@@ -18,7 +18,8 @@ NetID: jnava35@uic.edu | UIN: 660115946 | Repo for HW3 CS 441
 4. Locate where the files are produced and stored
 5. We need a `NetGraph_21-11-23-23-05-10.ngs` and a `NetGraph_21-11-23-23-05-10.ngs.perturbed`
 6. Once we have obtained the files we need to add them to our classes and change the directory output
-7. 
+7. Go to server class and locate where we are loading in the graphs for `originalGraph`
+8. Change the file to the file produced in main and change the path of where it was produced. Make sure file for `originalGraph` is .ngs
 
 # Information about Sever Class
 
