@@ -2,7 +2,7 @@
 
 NetID: jnava35@uic.edu | UIN: 660115946 | Repo for HW3 CS 441
 
-Information on Project:
+More Information and Details on Project:
 [HW3 Assignment](https://github.com/0x1DOCD00D/CS441_Fall2023/blob/main/Homework3.md)
 
 # Setting up Project
