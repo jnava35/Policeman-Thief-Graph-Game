@@ -92,9 +92,9 @@ Once we have this the program will then assign a P/T characters on a random node
 8. getPlayerInfo(playerName: String): Option[Player] - Retrieves information about a specific player.
 9. printWinLossStatus(playerName: String): Unit - Prints win/loss status for a player based on their current position and conditions.
 
-(Main Object: gamePoliceThief)
-- Main entry point for the PolicemanThiefGame application.
-- Loads original and perturbed graphs from NetGraph files.
-- Initializes and sets up the PolicemanThiefGame with the loaded graphs.
-- Registers a policeman and a thief player.
+(Main Object: gamePoliceThief)1
+1. Main entry point for the PolicemanThiefGame application.
+2. Loads original and perturbed graphs from NetGraph files.
+3. Initializes and sets up the PolicemanThiefGame with the loaded graphs.
+4. Registers a policeman and a thief player.
 
