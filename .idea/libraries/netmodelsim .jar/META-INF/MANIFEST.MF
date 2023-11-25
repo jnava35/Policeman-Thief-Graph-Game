@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: NetGameSim
+Implementation-Version: 0.1.0-SNAPSHOT
+Specification-Vendor: netgamesim
+Specification-Title: NetGameSim
+Implementation-Vendor-Id: netgamesim
+Specification-Version: 0.1.0-SNAPSHOT
+Main-Class: com.lsc.Main
+Implementation-Vendor: netgamesim
+

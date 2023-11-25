@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="sbt 1" modules="GenericSimUtilities,NetGameSim.GenericSimUtilities,NetGameSim.NetModelGenerator,NetModelGenerator,netgamesim_2972" />
+    <profile name="sbt 2" modules="CS 441 Fall 2023.NetGameSim,HW3_441.NetGameSim,NetGameSim">
+      <option name="compileOrder" value="JavaThenScala" />
+      <option name="deprecationWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <parameters>
+        <parameter value="--explain-types" />
+      </parameters>
+    </profile>
+    <profile name="sbt 3" modules="RandomWalks">
+      <option name="compileOrder" value="JavaThenScala" />
+      <option name="deprecationWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <parameters>
+        <parameter value="--explain-types" />
+        <parameter value="-Ytasty-reader" />
+        <parameter value="-Ytasty-reader" />
+      </parameters>
+    </profile>
+  </component>
+</project>
