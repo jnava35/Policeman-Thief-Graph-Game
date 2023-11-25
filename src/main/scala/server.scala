@@ -76,17 +76,21 @@ object PolicemanThiefGameServer extends App {
       // Create a PolicemanThiefGameActor instance with the loaded graphs
       val gameActor = system.actorOf(Props(new PolicemanThiefGameActor(og.toGameGraph, pg.toGameGraph)))
 
-      val route =
-        path("restart") {
+      val route = {
+        // curl -X POST http://localhost:8080/restart
+
+          path("restart") {
           post {
             completeWithStatus((gameActor ? RestartGame).mapTo[String])
           }
         } ~
+          // curl -X POST http://localhost:8080/startGame
           path("startGame") {
             post {
               complete("Game started.")
             }
           } ~
+      }
       // Example:
       // curl -X POST http://localhost:8080/move/P/2
       // where P is police and 2 is node
@@ -95,23 +99,23 @@ object PolicemanThiefGameServer extends App {
       // where T is thief and 2 is node
 
       path("move" / Segment / IntNumber) { (playerName, nodeId) =>
-            post {
-              val movePlayer = movePlayer(playerName, nodeId)
-              completeWithStatus((gameActor ? moveRequest).mapTo[String])
-            }
-          } ~
-          //
-          path("getInfo") {
-            post {
-              entity(as[QueryRequest]) { queryRequest =>
-                val playerName = getInfoNode.playerName
-                val node = getInfoNode.node
-                // Call the getInfoNode method here
-                game.getInfoNode(playerName, node)
-                complete("getting info.")
-              }
+        post {
+          val movePlayer = movePlayer(playerName, nodeId)
+          completeWithStatus((gameActor ? moveRequest).mapTo[String])
+        }
+      } ~
+        // curl -X POST http://localhost:8080/getInfo/P/2
+        path("getInfo") {
+          post {
+            entity(as[QueryRequest]) { queryRequest =>
+              val playerName = getInfoNode.playerName
+              val node = getInfoNode.node
+              // Call the getInfoNode method here
+              game.getInfoNode(playerName, node)
+              complete("getting info.")
             }
           }
+        }
 
       // Start the HTTP server
       Http().newServerAt("localhost", 8080).bind(route)
