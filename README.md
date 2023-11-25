@@ -34,11 +34,11 @@ Once we have this the program will then assign a P/T characters on a random node
 - `curl -X POST http://localhost:8080/restart`
 (This starts the game)
 - `curl -X POST http://localhost:8080/startGame`
-(This moves the Police)
+(This moves the Police, 2 is a place holder)
 - `curl -X POST http://localhost:8080/move/P/2`
-(This moves the Thief)
+(This moves the Thief, 2 is a place holder)
 - `curl -X POST http://localhost:8080/move/T/2`
-(This here can get info about the player. P or T)
+(This here can get info about the player. P or T, 2 is a place holder)
 - `curl -X POST http://localhost:8080/getInfo/P/2`
 
 # Information about Sever Class
