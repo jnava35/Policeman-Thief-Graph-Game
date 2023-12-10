@@ -1,0 +1,9 @@
+Student: Jose Nava
+
+=> No AWS deployment/Video = -0.5%
+=> Hardcoded filepaths for graphs = -0.4%
+=> Tests not implemented as scalatests = -0.5%
+
+Good solution. However, I would have liked to see you implement your tests as scalatests, and to deploy the project in AWS.
+
+Final Grade: 18.6%
